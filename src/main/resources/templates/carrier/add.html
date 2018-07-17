@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:replace="fragements :: application_title"></title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation_bar"></nav>
+
+<h1 th:text="${title}">Title</h1>
+
+<!--<span th:errors="*{name}" class="error"></span>-->
+<!--TODO make errors work-->
+
+
+</body>
+</html>

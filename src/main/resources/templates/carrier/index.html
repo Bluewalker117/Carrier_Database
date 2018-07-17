@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:replace="fragements :: application_title"></title>
 </head>
 <body>
-<p>Success</p>
+<nav th:replace="fragments :: navigation_bar"></nav>
+
+<h1 th:text="${title}">Application Title</h1>
 </body>
 </html>
+
+
+
+
+<!--TODO need a search box-->
+<!--TODO need a navigation bar; options to edit (requiring login), view database by carrier-->
+<!--TODO optional: have any user open a message/email and send to authority users to request info be added-->
