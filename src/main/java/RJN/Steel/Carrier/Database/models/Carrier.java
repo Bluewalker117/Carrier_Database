@@ -14,7 +14,7 @@ public class Carrier {
     private Integer id;
 
     @NotNull
-    @Size(min = 3)
+    @Size(min = 3, message= "A minimum of three (3) characters must be entered")
     private String name;
 
 

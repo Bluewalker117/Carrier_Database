@@ -35,7 +35,7 @@ public class CarrierController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addcarrier (@ModelAttribute @Valid Carrier carrier, Model model, Errors errors){
+    public String addcarrier (@ModelAttribute @Valid Carrier carrier, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add a Carrier");
 
