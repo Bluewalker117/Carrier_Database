@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -28,14 +29,14 @@ public class CarrierController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String addcarrier (Model model){
+    public String addCarrierDisplay (Model model){
         model.addAttribute(new Carrier());
         model.addAttribute("title", "Add a Carrier");
         return "carrier/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String addcarrier (@ModelAttribute @Valid Carrier carrier, Errors errors, Model model){
+    public String addCarrierProcess (@ModelAttribute @Valid Carrier carrier, Errors errors, Model model){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add a Carrier");
 
@@ -43,7 +44,24 @@ public class CarrierController {
         }
 
         carrierDao.save(carrier);
-        return "redirect";
+        return "redirect:";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String removeCarrierDisplay (Model model){
+        model.addAttribute("title", "Remove a Carrier");
+        model.addAttribute("carriers", carrierDao.findAll());
+        return "carrier/edit";
+
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String removeCarrierProcess (@RequestParam int[] carrierIds){
+        for (int carrierId : carrierIds){
+            carrierDao.deleteById(carrierId);
+        }
+        return "redirect:";
+
     }
 
 
@@ -52,5 +70,5 @@ public class CarrierController {
 }
 
 
-//TODO set up database
-//TODO have add, remove, edit functions for database
+
+//TODO have edit functions for database
