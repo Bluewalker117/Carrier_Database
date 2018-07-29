@@ -8,6 +8,14 @@
 <nav th:replace="fragments :: navigation_bar"></nav>
 
 <h1 th:text="${title}">Application Title</h1>
+
+<p th:unless="${carriers} and ${carriers.size()}">No Carriers have been added.</p>
+
+<ul th:each="carrier : ${carriers}">
+    <ul th:text="${carrier.name}">
+    </ul>
+</ul>
+
 </body>
 </html>
 

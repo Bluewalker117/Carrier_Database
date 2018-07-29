@@ -9,17 +9,5 @@
 
 <h1 th:text="${title}">Title</h1>
 
-<form th:object="${carrier}" method="post">
-    <div class="form-group">
-        <label th:for="name">Carrier Name</label>
-        <input th:field="*{name}"/>
-        <span th:errors="*{name}" class="error"></span>
-    </div>
-</form>
-
-<input type="submit" value="Add a New Carrier"/>
-
-
-
 </body>
 </html>

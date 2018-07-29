@@ -1,7 +1,8 @@
 package RJN.Steel.Carrier.Database.controllers;
 
 import RJN.Steel.Carrier.Database.models.Carrier;
-//import RJN.Steel.Carrier.Database.models.Data.CarrierDao; //TODO have DAO work
+import RJN.Steel.Carrier.Database.models.Data.CarrierDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,10 +16,14 @@ import javax.validation.Valid;
 @RequestMapping("carrier")
 public class CarrierController {
 
+    @Autowired
+    private CarrierDao carrierDao;
+
     @RequestMapping("")
     public String index(Model model){
 
         model.addAttribute("title", "Insurance Carrier Database");
+        model.addAttribute("carriers", carrierDao.findAll());
         return "carrier/index";
     }
 
@@ -33,10 +38,11 @@ public class CarrierController {
     public String addcarrier (@ModelAttribute @Valid Carrier carrier, Model model, Errors errors){
         if (errors.hasErrors()){
             model.addAttribute("title", "Add a Carrier");
+
             return "carrier/add";
         }
 
-       // carrierDao.save(carrier);
+        carrierDao.save(carrier);
         return "redirect";
     }
 
