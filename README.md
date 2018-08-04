@@ -6,12 +6,8 @@ Over time I have put together my own resource to enable me to be more efficient 
 contacting regarding an incident, but also how to contact the company. Unfortunately my resource is a simplified document that is not easy 
 to share with others.
 
-The application I am putting together, will allow necessary information for a given company to be stored and accessed.  
-A user will be able to search for a specific company, the pattern of a policy or claim number in order to identify which company they may 
-need to contact, and generate contact information for a person at the other company when a person's name is known.  The final goal of this
-application will be to move beyond the initial design that is focused towards the insurance industry, and allow any business/industry to 
-specific what information they want to track in order to facilitate more efficient knowledge and communication with other company's within 
-their specific industry.
+The application I am putting together in coordination with my LaunchCode development, will allow necessary information for a given company to be stored and accessed.  A user will be able to search for a specific company, the pattern of a policy or claim number in order to identify which company they may need to contact, and generate contact information for a person at the other company when a person's name is known.  
+The final goal of this application will be to move beyond the initial design that is focused towards the insurance industry, and allow any business/industry to specific what information they want to track in order to facilitate more efficient knowledge and communication with other company's within their specific industry.
 
 Planned Features
 A) A database that allows inputting, storing, and editing of companies and individuals
