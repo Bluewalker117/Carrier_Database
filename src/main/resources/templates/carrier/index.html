@@ -12,7 +12,8 @@
 <p th:unless="${carriers} and ${carriers.size()}">No Carriers have been added.</p>
 
 <ul th:each="carrier : ${carriers}">
-    <ul th:text="${carrier.name}">
+    <ul >
+        <a th:href="'carrier/edit/' + ${carrier.id}" th:text="${carrier.name}"></a>
     </ul>
 </ul>
 

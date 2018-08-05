@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("carrier")
@@ -51,7 +49,7 @@ public class CarrierController {
     public String removeCarrierDisplay (Model model){
         model.addAttribute("title", "Remove a Carrier");
         model.addAttribute("carriers", carrierDao.findAll());
-        return "carrier/edit";
+        return "carrier/remove";
 
     }
 
@@ -63,6 +61,23 @@ public class CarrierController {
         return "redirect:";
 
     }
+
+    @RequestMapping(value = "edit/{carrierId}", method = RequestMethod.GET)
+    public String editCarrierDisplay (Model model, @PathVariable int carrierId){
+        Carrier forEditing = carrierDao.findById(carrierId).get();
+        model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
+        model.addAttribute("name", forEditing.getName());
+        //model.addAttribute("address", forEditing.getAddress());
+        return "carrier/edit";
+
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String editCarrierProcess (int carrierId, String name){
+        //model.addAttribute("title", "Edit a Carrier");
+        return "Under development";
+    }
+
 
 
 

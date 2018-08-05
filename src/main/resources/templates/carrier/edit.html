@@ -10,13 +10,17 @@
 <h1 th:text="${title}">Title</h1>
 
 <form method="post">
-    <div th:each="carrier : ${carriers}" class="checkbox">
-        <input type="checkbox" name="carrierIds" th:value="${carrier.id}" th:id="${carrier.id}"/>
-        <label th:for="${carrier.id}" th:text="${carrier.name}"></label>
-        <br/>
-    </div>
+    <input type="hidden" name="carrierId"/>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${name}"></td>
+            <td>Addresses:</td>
 
-    <input type="submit" value="Remove the selected Carriers"/>
+        </tr>
+
+    </table>
+
 </form>
 </body>
 </html>
