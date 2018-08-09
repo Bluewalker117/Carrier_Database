@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -67,7 +68,14 @@ public class CarrierController {
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
         model.addAttribute("name", forEditing.getName());
-        //model.addAttribute("address", forEditing.getAddress());
+        model.addAttribute("addressEmailGeneral", forEditing.getAddressEmailGeneral());
+        model.addAttribute("addressEmailPattern", forEditing.getAddressEmailPattern());
+        model.addAttribute("phoneNumber", forEditing.getPhoneNumber());
+        model.addAttribute("claimNumber", forEditing.getClaimNumber());
+        model.addAttribute("policyNumber", forEditing.getPolicyNumber());
+        model.addAttribute("memberOfHub", forEditing.getMemberOfHub());
+        model.addAttribute("memberOfArb", forEditing.getMemberOfArb());
+        model.addAttribute("navigatorId", forEditing.getNavigatorId());
         return "carrier/edit";
 
     }
