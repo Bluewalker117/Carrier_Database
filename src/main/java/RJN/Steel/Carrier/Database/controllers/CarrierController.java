@@ -63,8 +63,25 @@ public class CarrierController {
 
     }
 
+    @RequestMapping(value = "view/{carrierId}", method = RequestMethod.GET)
+    public String detailedCarrierDisplay (Model model, @PathVariable int carrierId){
+        Carrier forEditing = carrierDao.findById(carrierId).get();
+        model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
+        model.addAttribute("name", forEditing.getName());
+        model.addAttribute("addressEmailGeneral", forEditing.getAddressEmailGeneral());
+        model.addAttribute("addressEmailPattern", forEditing.getAddressEmailPattern());
+        model.addAttribute("phoneNumber", forEditing.getPhoneNumber());
+        model.addAttribute("claimNumber", forEditing.getClaimNumber());
+        model.addAttribute("policyNumber", forEditing.getPolicyNumber());
+        model.addAttribute("memberOfHub", forEditing.getMemberOfHub());
+        model.addAttribute("memberOfArb", forEditing.getMemberOfArb());
+        model.addAttribute("navigatorId", forEditing.getNavigatorId());
+        return "carrier/detail";
+
+    }
+
     @RequestMapping(value = "edit/{carrierId}", method = RequestMethod.GET)
-    public String editCarrierDisplay (Model model, @PathVariable int carrierId){
+    public String editCarrierView (Model model, @PathVariable int carrierId) {
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
         model.addAttribute("name", forEditing.getName());
@@ -77,7 +94,6 @@ public class CarrierController {
         model.addAttribute("memberOfArb", forEditing.getMemberOfArb());
         model.addAttribute("navigatorId", forEditing.getNavigatorId());
         return "carrier/edit";
-
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)

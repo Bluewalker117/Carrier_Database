@@ -13,7 +13,7 @@
 
 <ul th:each="carrier : ${carriers}">
     <ul >
-        <a th:href="'/carrier/edit/' + ${carrier.id}" th:text="${carrier.name}"></a>
+        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}"></a>
     </ul>
 </ul>
 

@@ -11,45 +11,51 @@
 
 <form method="post">
     <input type="hidden" name="carrierId"/>
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td th:text="${name}"></td>
-        </tr>
-        <tr>
-            <td>General Email Address:</td>
-            <td th:text="${addressEmailGeneral}"></td>
-        </tr>
-        <tr>
-            <td>Email Address Pattern:</td>
-            <td th:text="${addressEmailPattern}"></td>
-        </tr>
-        <tr>
-            <td>Phone Numbers:</td>
-            <td th:text="${phoneNumber}"></td>
-        </tr>
-        <tr>
-            <td>Claim Number Examples:</td>
-            <td th:text="${claimNumber}"></td>
-        </tr>
-        <tr>
-            <td>Policy Number Examples:</td>
-            <td th:text="${policyNumber}"></td>
-        </tr>
-        <tr>
-            <td>Is a Member of E-Subro HUB:</td>
-            <td th:text="${memberOfHub}"></td>
-        </tr>
-        <tr>
-            <td>Is a Member of Arbitration:</td>
-            <td th:text="${memberOfArb}"></td>
-        </tr>
-        <tr>
-            <td>Navigator ID Number:</td>
-            <td th:text="${navigatorId}"></td>
-        </tr>
-
-    </table>
+    <div class="form-group">
+        <label th:for="name">Carrier Name:</label>
+        <input th:value="*{name}"/>
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="addressEmailGeneral">General Company Email Address:</label>
+        <input th:value="*{addressEmailGeneral}"/>
+        <span th:errors="*{addressEmailGeneral}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="addressEmailPattern">Company Email Pattern:</label>
+        <input th:value="*{addressEmailPattern}"/>
+        <span th:errors="*{addressEmailPattern}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="phoneNumber">Company Phone Numbers:</label>
+        <input th:value="*{phoneNumber}"/>
+        <span th:errors="*{phoneNumber}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="claimNumber">Company Claim Numbers:</label>
+        <input th:value="*{claimNumber}"/>
+        <span th:errors="*{claimNumber}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="policyNumber">Company Policy Numbers:</label>
+        <input th:value="*{policyNumber}"/>
+        <span th:errors="*{policyNumber}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="memberOfHub">Is the Company a Member of E-Subro HUB?</label>
+        <input th:value="*{memberOfHub}"/>
+        <span th:errors="*{memberOfHub}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="memberOfArb">Is the Company a Member of Arbitration?</label>
+        <input th:value="*{memberOfArb}"/>
+        <span th:errors="*{memberOfArb}" class="error"></span>
+    </div>
+    <div>
+        <label th:for="navigatorId">Company Navigator ID Number:</label>
+        <input th:value="*{navigatorId}"/>
+        <span th:errors="*{navigatorId}" class="error"></span>
+    </div>
 
 </form>
 </body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:replace="fragements :: application_title"></title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation_bar"></nav>
+
+<h1 th:text="${title}">Title</h1>
+
+<form method="post">
+    <input type="hidden" name="carrierId"/>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td th:text="${name}"></td>
+        </tr>
+        <tr>
+            <td>General Email Address:</td>
+            <td th:text="${addressEmailGeneral}"></td>
+        </tr>
+        <tr>
+            <td>Email Address Pattern:</td>
+            <td th:text="${addressEmailPattern}"></td>
+        </tr>
+        <tr>
+            <td>Phone Numbers:</td>
+            <td th:text="${phoneNumber}"></td>
+        </tr>
+        <tr>
+            <td>Claim Number Examples:</td>
+            <td th:text="${claimNumber}"></td>
+        </tr>
+        <tr>
+            <td>Policy Number Examples:</td>
+            <td th:text="${policyNumber}"></td>
+        </tr>
+        <tr>
+            <td>Is a Member of E-Subro HUB:</td>
+            <td th:text="${memberOfHub}"></td>
+        </tr>
+        <tr>
+            <td>Is a Member of Arbitration:</td>
+            <td th:text="${memberOfArb}"></td>
+        </tr>
+        <tr>
+            <td>Navigator ID Number:</td>
+            <td th:text="${navigatorId}"></td>
+        </tr>
+
+    </table>
+
+</form>
+</body>
+</html>
