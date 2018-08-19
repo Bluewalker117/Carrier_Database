@@ -67,6 +67,7 @@ public class CarrierController {
     public String detailedCarrierDisplay (Model model, @PathVariable int carrierId){
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
+        model.addAttribute("single", carrierId);
         model.addAttribute("name", forEditing.getName());
         model.addAttribute("addressEmailGeneral", forEditing.getAddressEmailGeneral());
         model.addAttribute("addressEmailPattern", forEditing.getAddressEmailPattern());
@@ -80,7 +81,7 @@ public class CarrierController {
 
     }
 
-    @RequestMapping(value = "edit/{carrierId}", method = RequestMethod.GET)
+    @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.GET)
     public String editCarrierView (Model model, @PathVariable int carrierId) {
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
@@ -96,10 +97,15 @@ public class CarrierController {
         return "carrier/edit";
     }
 
-    @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String editCarrierProcess (int carrierId, String name){
-        //model.addAttribute("title", "Edit a Carrier");
-        return "Under development";
+    @RequestMapping(value = "view/{carrierId}/edit", params = "name", method = RequestMethod.POST)
+    public String editCarrierProcess (@PathVariable int carrierId, @RequestParam("name") String name, Model model) {
+        Carrier change = carrierDao.findById(carrierId).get();
+        //model.addAttribute("name", name);
+        change.setName(name);
+        carrierDao.save(change);
+
+        return "carrier/detail{carrierId}";
+        //returns the error, "Parameter conditions "name" not met for actual request parameters: carrierId={}"
     }
 
 

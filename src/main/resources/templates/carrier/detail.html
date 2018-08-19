@@ -8,6 +8,8 @@
 <nav th:replace="fragments :: navigation_bar"></nav>
 
 <h1 th:text="${title}">Title</h1>
+<a th:href="'/carrier/view/' + ${single} + '/edit'">Edit Carrier Information</a>
+
 
 <form method="post">
     <input type="hidden" name="carrierId"/>
