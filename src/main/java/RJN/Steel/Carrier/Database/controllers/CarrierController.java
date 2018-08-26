@@ -9,10 +9,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes("temp")
 @RequestMapping("carrier")
 public class CarrierController {
 
@@ -82,7 +85,7 @@ public class CarrierController {
     }
 
     @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.GET)
-    public String editCarrierView (Model model, @PathVariable int carrierId) {
+    public String editCarrierView (@PathVariable int carrierId, Model model) {
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
         model.addAttribute("name", forEditing.getName());
@@ -94,17 +97,25 @@ public class CarrierController {
         model.addAttribute("memberOfHub", forEditing.getMemberOfHub());
         model.addAttribute("memberOfArb", forEditing.getMemberOfArb());
         model.addAttribute("navigatorId", forEditing.getNavigatorId());
+        model.addAttribute("temp", new Carrier());
+        System.out.println("Successful Form Show");
         return "carrier/edit";
     }
 
-    @RequestMapping(value = "view/{carrierId}/edit", params = "name", method = RequestMethod.POST)
-    public String editCarrierProcess (@PathVariable int carrierId, @RequestParam("name") String name, Model model) {
-        Carrier change = carrierDao.findById(carrierId).get();
-        //model.addAttribute("name", name);
-        change.setName(name);
-        carrierDao.save(change);
+    @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.POST)
+    public String editCarrierProcess (@PathVariable int carrierId, @ModelAttribute("temp") Carrier carrier) {
 
-        return "carrier/detail{carrierId}";
+        System.out.println(carrier.getName());
+        System.out.println("1");
+        Carrier change = carrierDao.findById(carrierId).get();
+        System.out.println("2");
+        change.setName(carrier.getName());
+        System.out.println(carrier.getName());
+        System.out.println("3");
+        carrierDao.save(change);
+        System.out.println("4");
+
+        return "redirect:";
         //returns the error, "Parameter conditions "name" not met for actual request parameters: carrierId={}"
     }
 
