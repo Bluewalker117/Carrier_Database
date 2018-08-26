@@ -1,0 +1,40 @@
+body {
+font-family: "Times New Roman", Times, serif;
+}
+
+.navbutton {
+font-family: "Lucida Console", Monaco, monospace;
+color: white;
+display: inline-block;
+background-color: navy;
+width: 200px;
+border: 3px solid grey;
+align: center;
+}
+
+.navbar {
+background-color: navy;
+text-align: center;
+width: 100%;
+}
+
+.pagetitle {
+color: navy;
+text-align: center;
+font-family: "Arial Black", Gadget, sans-serif;
+
+}
+
+.listcarriername {
+color: red;
+display: inline-block;
+align: left;
+text-decoration: none;
+font-weight: bold;
+border: 1px solid grey;
+padding: 3px;
+}
+
+label {
+font-weight: bold;
+}

@@ -4,7 +4,9 @@ import RJN.Steel.Carrier.Database.models.Carrier;
 import RJN.Steel.Carrier.Database.models.Data.CarrierDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,7 +68,7 @@ public class CarrierController {
     @RequestMapping(value = "view/{carrierId}", method = RequestMethod.GET)
     public String detailedCarrierDisplay (Model model, @PathVariable int carrierId){
         Carrier forEditing = carrierDao.findById(carrierId).get();
-        model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
+        model.addAttribute("title", "Carrier: " + forEditing.getName());
         model.addAttribute("single", carrierId);
         model.addAttribute("name", forEditing.getName());
         model.addAttribute("addressEmailGeneral", forEditing.getAddressEmailGeneral());
@@ -83,6 +85,7 @@ public class CarrierController {
 
     @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.GET)
     public String editCarrierView (Model model, @PathVariable int carrierId) {
+        System.out.println("HELLO WORLD");
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
         model.addAttribute("name", forEditing.getName());
@@ -97,14 +100,26 @@ public class CarrierController {
         return "carrier/edit";
     }
 
-    @RequestMapping(value = "view/{carrierId}/edit", params = "name", method = RequestMethod.POST)
-    public String editCarrierProcess (@PathVariable int carrierId, @RequestParam("name") String name, Model model) {
-        Carrier change = carrierDao.findById(carrierId).get();
-        //model.addAttribute("name", name);
-        change.setName(name);
-        carrierDao.save(change);
 
-        return "carrier/detail{carrierId}";
+    @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.PUT)
+    public String editCarrierProcess (@RequestBody Carrier carrier, @PathVariable int carrierId) {
+
+        System.out.println("1");
+        Carrier singleCarrier = carrier;
+        System.out.println("2");
+        Carrier existingCarrier = carrierDao.findById(carrierId).get();
+        System.out.println("3");
+        existingCarrier.setName(singleCarrier.getName());
+
+        System.out.println("4");
+        carrierDao.save(existingCarrier);
+
+        //Carrier change = carrierDao.findById(carrierId).get();
+        //model.addAttribute("name", name);
+        //change.setName(name);
+        //carrierDao.save(change);
+        System.out.println("5");
+        return "/carrier/detail";
         //returns the error, "Parameter conditions "name" not met for actual request parameters: carrierId={}"
     }
 

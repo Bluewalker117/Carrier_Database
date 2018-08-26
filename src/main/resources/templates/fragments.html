@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
+<link rel="stylesheet" type="text/css" href="/css/style.css" th:href="@{/css/style.css}"/>
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <title th:fragement="application_title">Insurance Carrier Database</title>
 </head>
 <body>
-<nav th:fragment="navigation_bar">
-    <a href="/carrier">Carriers by Name</a>
-    <a href="/carrier/add">Add to Database</a>
-    <a href="/carrier/remove">Remove from Database</a>
+
+<nav th:fragment="navigation_bar" class="navbar">
+    <a href="/carrier" class="navbutton">Carriers by Name</a>
+    <a href="/carrier/add" class="navbutton">Add to Database</a>
+    <a href="/carrier/remove" class="navbutton">Remove from Database</a>
     <hr>
 </nav>
 

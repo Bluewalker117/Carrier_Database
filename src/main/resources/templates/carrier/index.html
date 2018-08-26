@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
+<link rel="stylesheet" type="text/css" href="/css/style.css" th:href="@{/css/style.css}"/>
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
     <title th:replace="fragements :: application_title"></title>
@@ -7,13 +8,13 @@
 <body>
 <nav th:replace="fragments :: navigation_bar"></nav>
 
-<h1 th:text="${title}">Application Title</h1>
+<h1 th:text="${title}" class="pagetitle">Title</h1>
 
 <p th:unless="${carriers} and ${carriers.size()}">No Carriers have been added.</p>
 
 <ul th:each="carrier : ${carriers}">
     <ul >
-        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}"></a>
+        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}" class="listcarriername"></a>
     </ul>
 </ul>
 
