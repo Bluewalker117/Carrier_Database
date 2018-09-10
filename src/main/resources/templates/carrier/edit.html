@@ -10,52 +10,51 @@
 
 <h1 th:text="${title}" class="pagetitle">Title</h1>
 
-<form method="put">
-    <input type="hidden" name="carrierId"/>
+<form th:object="${temp}" th:method="post">
+    <input type="hidden" name="carrierId" th:field="*{id}"/>
     <div class="form-group">
         <label th:for="name">Carrier Name</label>
-        <input th:value="*{name}"/>
-        <input type="hidden" th:field="*{name}"/>
+        <input th:field="*{name}"/>
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div>
         <label th:for="addressEmailGeneral">General Company Email Address:</label>
-        <input th:value="*{addressEmailGeneral}"/>
+        <input th:field="*{addressEmailGeneral}"/>
         <span th:errors="*{addressEmailGeneral}" class="error"></span>
     </div>
     <div>
         <label th:for="addressEmailPattern">Company Email Pattern:</label>
-        <input th:value="*{addressEmailPattern}"/>
+        <input th:field="*{addressEmailPattern}"/>
         <span th:errors="*{addressEmailPattern}" class="error"></span>
     </div>
     <div>
         <label th:for="phoneNumber">Company Phone Numbers:</label>
-        <input th:value="*{phoneNumber}"/>
+        <input th:field="*{phoneNumber}"/>
         <span th:errors="*{phoneNumber}" class="error"></span>
     </div>
     <div>
         <label th:for="claimNumber">Company Claim Numbers:</label>
-        <input th:value="*{claimNumber}"/>
+        <input th:field="*{claimNumber}"/>
         <span th:errors="*{claimNumber}" class="error"></span>
     </div>
     <div>
         <label th:for="policyNumber">Company Policy Numbers:</label>
-        <input th:value="*{policyNumber}"/>
+        <input th:field="*{policyNumber}"/>
         <span th:errors="*{policyNumber}" class="error"></span>
     </div>
     <div>
         <label th:for="memberOfHub">Is the Company a Member of E-Subro HUB?</label>
-        <input th:value="*{memberOfHub}"/>
+        <input th:field="*{memberOfHub}"/>
         <span th:errors="*{memberOfHub}" class="error"></span>
     </div>
     <div>
         <label th:for="memberOfArb">Is the Company a Member of Arbitration?</label>
-        <input th:value="*{memberOfArb}"/>
+        <input th:field="*{memberOfArb}"/>
         <span th:errors="*{memberOfArb}" class="error"></span>
     </div>
     <div>
         <label th:for="navigatorId">Company Navigator ID Number:</label>
-        <input th:value="*{navigatorId}"/>
+        <input th:field="*{navigatorId}"/>
         <span th:errors="*{navigatorId}" class="error"></span>
     </div>
 

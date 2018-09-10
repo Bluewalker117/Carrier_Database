@@ -25,6 +25,7 @@ public class Carrier {
 
     private String addressEmailPattern;
 
+    @Size(min = 12, max = 13, message = "Phone number must be in the format of 111-111-1111")
     private String phoneNumber;
 
     private String claimNumber;

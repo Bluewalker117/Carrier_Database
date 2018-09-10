@@ -4,15 +4,15 @@ import RJN.Steel.Carrier.Database.models.Carrier;
 import RJN.Steel.Carrier.Database.models.Data.CarrierDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
+
+
 import javax.validation.Valid;
-import java.util.Optional;
+
 
 @Controller
 @RequestMapping("carrier")
@@ -83,11 +83,12 @@ public class CarrierController {
 
     }
 
+
     @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.GET)
     public String editCarrierView (Model model, @PathVariable int carrierId) {
-        System.out.println("HELLO WORLD");
         Carrier forEditing = carrierDao.findById(carrierId).get();
         model.addAttribute("title", "Edit Carrier: " + forEditing.getName());
+        model.addAttribute("id", carrierId);
         model.addAttribute("name", forEditing.getName());
         model.addAttribute("addressEmailGeneral", forEditing.getAddressEmailGeneral());
         model.addAttribute("addressEmailPattern", forEditing.getAddressEmailPattern());
@@ -97,30 +98,37 @@ public class CarrierController {
         model.addAttribute("memberOfHub", forEditing.getMemberOfHub());
         model.addAttribute("memberOfArb", forEditing.getMemberOfArb());
         model.addAttribute("navigatorId", forEditing.getNavigatorId());
+        model.addAttribute("temp", forEditing);
         return "carrier/edit";
     }
 
 
-    @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.PUT)
-    public String editCarrierProcess (@RequestBody Carrier carrier, @PathVariable int carrierId) {
+    @RequestMapping(value = "view/{carrierId}/edit", method = RequestMethod.POST)
+    public String editCarrierProcess (@PathVariable int carrierId, @ModelAttribute("temp") @Valid Carrier temp, Errors errors, Model model) {
 
-        System.out.println("1");
-        Carrier singleCarrier = carrier;
-        System.out.println("2");
-        Carrier existingCarrier = carrierDao.findById(carrierId).get();
-        System.out.println("3");
-        existingCarrier.setName(singleCarrier.getName());
+        Carrier existing = carrierDao.findById(carrierId).get();
 
-        System.out.println("4");
-        carrierDao.save(existingCarrier);
+        if (errors.hasErrors()){
+            model.addAttribute("title", "Edit Carrier: " + existing.getName());
 
-        //Carrier change = carrierDao.findById(carrierId).get();
-        //model.addAttribute("name", name);
-        //change.setName(name);
-        //carrierDao.save(change);
-        System.out.println("5");
-        return "/carrier/detail";
-        //returns the error, "Parameter conditions "name" not met for actual request parameters: carrierId={}"
+            return "carrier/edit";
+        }
+
+
+        existing.setName(temp.getName());
+        existing.setAddressEmailGeneral(temp.getAddressEmailGeneral());
+        existing.setAddressEmailPattern(temp.getAddressEmailPattern());
+        existing.setPhoneNumber(temp.getPhoneNumber());
+        existing.setClaimNumber(temp.getClaimNumber());
+        existing.setPolicyNumber(temp.getPolicyNumber());
+        existing.setMemberOfHub(temp.getMemberOfHub());
+        existing.setMemberOfArb(temp.getMemberOfArb());
+        existing.setNavigatorId(temp.getNavigatorId());
+
+        carrierDao.save(existing);
+
+        return "redirect:";
+
     }
 
 
@@ -131,4 +139,3 @@ public class CarrierController {
 
 
 
-//TODO have edit functions for database
