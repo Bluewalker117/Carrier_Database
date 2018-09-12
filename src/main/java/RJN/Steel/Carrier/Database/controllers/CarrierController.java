@@ -2,7 +2,9 @@ package RJN.Steel.Carrier.Database.controllers;
 
 import RJN.Steel.Carrier.Database.models.Carrier;
 import RJN.Steel.Carrier.Database.models.Data.CarrierDao;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -24,9 +27,12 @@ public class CarrierController {
     @RequestMapping("")
     public String index(Model model){
 
+        //Sort list = new Sort(Sort.Direction.ASC, "name");
         model.addAttribute("title", "Insurance Carrier Database");
         model.addAttribute("carriers", carrierDao.findAll());
         return "carrier/index";
+
+        //TODO display results alphabetically by name. findall() into an array/list, then sort, then pass into model.addAttribute
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
