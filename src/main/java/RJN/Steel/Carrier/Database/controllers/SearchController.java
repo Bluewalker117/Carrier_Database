@@ -31,28 +31,32 @@ public class SearchController {
     public String index(Model model){
 
         model.addAttribute("title", "Search Carrier Database");
+        model.addAttribute("title2", "Search Results");
         model.addAttribute(new SearchForm());
         System.out.println("Get works");
+
         return "search/index";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String processSearch(@RequestParam(value = "keyword") String keyword, Model model){
+    @RequestMapping(value = "results")
+    public String processSearch(@RequestParam("searchInput") String searchTerm, Model model){
         System.out.println("1");
         List searchResults = null;
         try {
-            searchResults = carrierSearch.search(keyword);
+            searchResults = carrierSearch.search(searchTerm);
         } catch (Exception ex) {
-            System.out.println("Error");
+
         }
 
-        System.out.println(keyword);
-        searchDao.findByName(keyword);
-        model.addAttribute("title", "Search Results");
+        System.out.println(searchTerm);
+        System.out.println("2");
+        searchDao.findByName(searchTerm);
+        model.addAttribute("title", "Search Carrier Database");
+        model.addAttribute("title2", "Search Results");
         model.addAttribute("carriers",searchResults);
 
 
-      return "search/results";
+      return "search/index";
     }
 //"view/{carrierId}/edit"
 }

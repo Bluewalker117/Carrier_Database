@@ -8,14 +8,15 @@
 <body>
 <nav th:replace="fragments :: navigation_bar"></nav>
 
-<h1 th:text="${title}">Application Title</h1>
+<h1 th:text="${title}" class="pagetitle">Application Title</h1>
 
-<form th:object="${searchForm}">
+<form th:action="@{/search/results}">
     <h2>Search by:</h2>
 
     <div class="form-group">
-        <label th:for="keyword"></label>
-        <input class="form-control" name="keyword" th:field="*{keyword}" />
+        <label th:for="searchInput"></label>
+        <input type="text" class="form-control" name="searchInput" id="searchInput" />
+
         <select>
             <option th:each="type : *{types}" th:value="${type}" th:text="${type.name}"></option>
         </select>
@@ -23,5 +24,19 @@
     <br>
     <input type="submit" value="Search" />
 </form>
+
+
+<hr>
+<h1 th:text="${title2}">Sub Title</h1>
+
+<p  th:unless="${carriers} and ${carriers.size()}">No Results Found.</p>
+
+<ul th:each="carrier : ${carriers}">
+    <ul >
+        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}" class="listcarriername"></a>
+    </ul>
+</ul>
+
+
 </body>
 </html>
