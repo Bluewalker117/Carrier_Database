@@ -1,10 +1,9 @@
 package RJN.Steel.Carrier.Database.models;
 
 import org.apache.tomcat.jni.Address;
+import org.springframework.stereotype.Indexed;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -12,6 +11,8 @@ import javax.validation.constraints.Size;
 import java.net.InterfaceAddress;
 
 @Entity
+@Indexed
+@Table(name = "carrier")
 public class Carrier {
 
     @Id
@@ -20,6 +21,7 @@ public class Carrier {
 
     @NotNull
     @Size(min = 3, message= "A minimum of three (3) characters must be entered")
+    @Column(name = "name")
     private String name;
 
     private String addressEmailGeneral;
