@@ -1,7 +1,9 @@
 package RJN.Steel.Carrier.Database.models;
 
 import org.apache.tomcat.jni.Address;
-import org.springframework.stereotype.Indexed;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -19,9 +21,9 @@ public class Carrier {
     @GeneratedValue
     private Integer id;
 
+    @Field(store = Store.NO)
     @NotNull
     @Size(min = 3, message= "A minimum of three (3) characters must be entered")
-    @Column
     private String name;
 
     private String addressEmailGeneral;
