@@ -21,7 +21,7 @@ public class Carrier {
 
     @NotNull
     @Size(min = 3, message= "A minimum of three (3) characters must be entered")
-    @Column(name = "name")
+    @Column
     private String name;
 
     private String addressEmailGeneral;

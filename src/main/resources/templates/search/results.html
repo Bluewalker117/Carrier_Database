@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<link rel="stylesheet" type="text/css" href="/css/style.css" th:href="@{/css/style.css}"/>
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8"/>
+    <title th:replace="fragments :: application_title"></title>
+</head>
+<body>
+<nav th:replace="fragments :: navigation_bar"></nav>
+
+<h1 th:text="${title}" class="pagetitle">Title</h1>
+
+<p th:unless="${carriers} and ${carriers.size()}">No Results Found.</p>
+
+<ul th:each="carrier : ${carriers}">
+    <ul >
+        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}" class="listcarriername"></a>
+    </ul>
+</ul>
+
+</body>
+</html>
+
+

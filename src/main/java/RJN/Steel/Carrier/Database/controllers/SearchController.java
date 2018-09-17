@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
@@ -29,10 +30,15 @@ public class SearchController {
         return "search/index";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT)
-    public String processSearch(Model model, @ModelAttribute SearchForm searchForm){
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String processSearch(@RequestParam(value = "keyword") String keyword, Model model){
+        System.out.print(keyword);
+        searchDao.findByName(keyword);
+        model.addAttribute("title", "Search Results");
+        model.addAttribute("carriers", searchDao.findAll() );
 
-      return "yes";
+
+      return "search/results";
     }
 
 }
