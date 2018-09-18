@@ -25,18 +25,5 @@
     <input type="submit" value="Search" />
 </form>
 
-
-<hr>
-<h1 th:text="${title2}">Sub Title</h1>
-
-<p  th:unless="${carriers} and ${carriers.size()}">No Results Found.</p>
-
-<ul th:each="carrier : ${carriers}">
-    <ul >
-        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}" class="listcarriername"></a>
-    </ul>
-</ul>
-
-
 </body>
 </html>

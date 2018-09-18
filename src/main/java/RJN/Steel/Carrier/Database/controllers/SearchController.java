@@ -31,7 +31,6 @@ public class SearchController {
     public String index(Model model){
 
         model.addAttribute("title", "Search Carrier Database");
-        model.addAttribute("title2", "Search Results");
         model.addAttribute(new SearchForm());
         System.out.println("Get works");
 
@@ -40,23 +39,28 @@ public class SearchController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String processSearch(@RequestParam("searchInput") String searchTerm, Model model){
+
         System.out.println("1");
         List searchResults = null;
-        try {
-            searchResults = carrierSearch.search(searchTerm);
-        } catch (Exception ex) {
 
-        }
 
         System.out.println(searchTerm);
         System.out.println("2");
-        searchDao.findByName(searchTerm);
-        model.addAttribute("title", "Search Carrier Database");
-        model.addAttribute("title2", "Search Results");
+
+        Carrier result =searchDao.findByName(searchTerm);
+
+
+        System.out.println(searchDao.findByName(searchTerm));
+
+        model.addAttribute("title", "Search Results");
+        System.out.println(result.getId());
+
+        System.out.println(result.getName());
         model.addAttribute("carriers",searchResults);
+        System.out.println(searchResults);
 
 
-      return "search/index";
+      return "search/results";
     }
-//"view/{carrierId}/edit"
+
 }
