@@ -37,8 +37,10 @@ public class Carrier {
 
     private String policyNumber;
 
+    @Pattern(regexp = "Yes|No", message = "Input 'Yes' or 'No'")
     private String memberOfHub;
 
+    @Pattern(regexp = "Yes|No", message = "Input Yes or No")
     private String memberOfArb;
 
     private Integer navigatorId;

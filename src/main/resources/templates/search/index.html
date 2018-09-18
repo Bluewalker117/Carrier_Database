@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org/">
+<html lang="en" xmlns:th="http://thymeleaf.org/" xmlns:form="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet" type="text/css" href="/css/style.css" th:href="@{/css/style.css}"/>
 <head th:replace="fragments :: head">
     <meta charset="UTF-8"/>
@@ -24,6 +24,19 @@
     <br>
     <input type="submit" value="Search" />
 </form>
+
+
+<hr>
+<h1 th:text="${subtitle}" class="subtitle"></h1>
+
+<p  th:unless="${carriers} and ${carriers.size()}">No Results Found.</p>
+
+<ul th:each="carrier : ${carriers}">
+    <ul >
+        <a th:href="'/carrier/view/' + ${carrier.id}" th:text="${carrier.name}" class="listcarriername"></a>
+    </ul>
+</ul>
+
 
 </body>
 </html>
