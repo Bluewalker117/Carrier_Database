@@ -38,7 +38,7 @@ public class SearchController {
         return "search/index";
     }
 
-    @RequestMapping(value = "results")
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public String processSearch(@RequestParam("searchInput") String searchTerm, Model model){
         System.out.println("1");
         List searchResults = null;
