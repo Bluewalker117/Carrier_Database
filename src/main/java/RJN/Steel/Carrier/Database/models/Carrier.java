@@ -1,9 +1,10 @@
 package RJN.Steel.Carrier.Database.models;
 
-import org.apache.tomcat.jni.Address;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Store;
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
+import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
+import org.hibernate.search.annotations.*;
+import org.hibernate.search.annotations.Parameter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,6 +15,9 @@ import java.net.InterfaceAddress;
 
 @Entity
 @Indexed
+@AnalyzerDef(name="enhanced", tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+        filters = {@TokenFilterDef(factory = LowerCaseFilterFactory.class),
+        @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {@Parameter(name = "language", value = "English")})})
 @Table(name = "carrier")
 public class Carrier {
 
@@ -22,6 +26,7 @@ public class Carrier {
     private Integer id;
 
     @Field(store = Store.NO)
+    @Analyzer(definition = "enhanced")
     @NotNull
     @Size(min = 3, message= "A minimum of three (3) characters must be entered")
     private String name;
@@ -37,10 +42,10 @@ public class Carrier {
 
     private String policyNumber;
 
-    @Pattern(regexp = "Yes|No", message = "Input 'Yes' or 'No'")
+    @Pattern(regexp = "^$|Yes|No|", message = "Input 'Yes' or 'No'")
     private String memberOfHub;
 
-    @Pattern(regexp = "Yes|No", message = "Input Yes or No")
+    @Pattern(regexp = "^$|Yes|No|Null", message = "Input Yes or No")
     private String memberOfArb;
 
     private Integer navigatorId;

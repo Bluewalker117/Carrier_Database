@@ -26,9 +26,9 @@ public class SearchController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model, SearchType searchType){
 
-        model.addAttribute("title", "Search Database");
+        model.addAttribute("title", "Database Search");
         model.addAttribute("subtitle", "Search Results:");
-        //model.addAttribute("types", searchType.);
+        model.addAttribute("types", SearchType.values());
         model.addAttribute(new SearchForm());
         return "search/index";
     }
@@ -47,15 +47,19 @@ public class SearchController {
 
         if (searchResults == null){
 
-            model.addAttribute("title", "Search Database");
-            model.addAttribute("subtitle", "Search Results");
+            model.addAttribute("title", "Database Search");
+            model.addAttribute("subtitle", "Search Results:");
+            model.addAttribute("types", SearchType.values());
             model.addAttribute("carriers","");
+
             return "search/index";
 
         } else {
 
-            model.addAttribute("title", "Search Database");
-            model.addAttribute("subtitle", "Search Results");
+
+            model.addAttribute("title", "Database Search");
+            model.addAttribute("subtitle", "Search Results:");
+            model.addAttribute("types", SearchType.values());
             model.addAttribute("carriers", searchResults);
 
         }
