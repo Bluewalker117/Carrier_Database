@@ -10,7 +10,7 @@
 
 <h1 th:text="${title}" class="pagetitle">Title</h1>
 
-<p th:unless="${carriers} and ${carriers.size()}">No Carriers have been added.</p>
+<p th:unless="${carriers} and ${carriers.size()}">No Results Found.</p>
 
 <ul th:each="carrier : ${carriers}">
     <ul >
@@ -22,8 +22,3 @@
 </html>
 
 
-
-
-
-
-<!--TODO optional: have any user open a message/email and send to authority users to request info be added-->

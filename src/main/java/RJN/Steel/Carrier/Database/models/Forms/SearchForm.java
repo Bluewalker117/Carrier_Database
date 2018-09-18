@@ -1,6 +1,9 @@
 package RJN.Steel.Carrier.Database.models.Forms;
 
+import RJN.Steel.Carrier.Database.models.Carrier;
 import RJN.Steel.Carrier.Database.models.SearchType;
+
+import java.util.List;
 
 public class SearchForm {
 
@@ -9,6 +12,8 @@ public class SearchForm {
     private SearchType searchType = SearchType.GENERAL;
 
     private String keyword;
+
+    private List<Carrier> carriers;
 
     public SearchType getSearchType() { return searchType; }
 
@@ -19,4 +24,12 @@ public class SearchForm {
     public String getKeyword() { return keyword; }
 
     public void setKeyword(String keyword) { this.keyword = keyword; }
+
+    public List<Carrier> getCarriers() {
+        return carriers;
+    }
+
+    public void setCarriers(List<Carrier> carriers) {
+        this.carriers = carriers;
+    }
 }

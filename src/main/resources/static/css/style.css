@@ -25,6 +25,10 @@ font-family: "Arial Black", Gadget, sans-serif;
 
 }
 
+.subtitle {
+text-align: center;
+}
+
 .listcarriername {
 color: red;
 display: inline-block;
