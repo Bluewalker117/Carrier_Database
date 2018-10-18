@@ -9,11 +9,13 @@ public class SearchForm {
 
     private SearchType[] types = SearchType.values();
 
-    private SearchType searchType = SearchType.GENERAL;
+    private SearchType searchType;
 
     private String keyword;
 
     private List<Carrier> carriers;
+
+    public void setSearchType(SearchType searchType) { this.searchType = searchType; }
 
     public SearchType getSearchType() { return searchType; }
 

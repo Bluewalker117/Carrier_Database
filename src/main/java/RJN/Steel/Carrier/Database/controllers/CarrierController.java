@@ -24,7 +24,7 @@ public class CarrierController {
     @Autowired
     private CarrierDao carrierDao;
 
-    @RequestMapping("")
+    @RequestMapping(value = "list")
     public String index(Model model){
 
         //Sort list = new Sort(Sort.Direction.ASC, "name");
@@ -51,7 +51,7 @@ public class CarrierController {
         }
 
         carrierDao.save(carrier);
-        return "redirect:";
+        return "redirect:list";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
@@ -67,7 +67,7 @@ public class CarrierController {
         for (int carrierId : carrierIds){
             carrierDao.deleteById(carrierId);
         }
-        return "redirect:";
+        return "redirect:list";
 
     }
 

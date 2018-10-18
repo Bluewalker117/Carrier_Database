@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("carrier/search")
+@RequestMapping("carrier")
 public class SearchController {
 
     @Autowired

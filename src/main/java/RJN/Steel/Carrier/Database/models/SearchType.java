@@ -2,7 +2,7 @@ package RJN.Steel.Carrier.Database.models;
 
 public enum SearchType {
 
-    GENERAL ("Everything"),
+  //  GENERAL ("Everything"),
     NAME ("Carrier Name");
 
 
